@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Vehicle_Web_App.Models.Vehicle>
+@using System.Web.Mvc.Html;
+
+
+
+@{
+
+
+    ViewBag.Title = "Vehicles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Vehicles</h2>
+
+<div class="form-horizontal">
+
+    <hr />
+    <div class="form-group">
+
+
+        <table class="table table-responsive" style="width:400px">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Make)
+                </th>
+
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Make)
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
