@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Vehicle-Web-App",
+    "\\Vehicle-Web-App\\Controllers",
+    "\\Vehicle-Web-App\\Controllers\\Api",
+    "\\Vehicle-Web-App\\Models",
+    "\\Vehicle-Web-App\\Properties",
+    "\\Vehicle-Web-App\\Views",
+    "\\Vehicle-Web-App\\Views\\Home",
+    "\\Vehicle-Web-App\\Views\\Vehicles"
+  ],
+  "SelectedNode": "\\Vehicle-Web-App\\Views\\Vehicles\\Edit.cshtml",
+  "PreviewInSolutionExplorer": false
+}

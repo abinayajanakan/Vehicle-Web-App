@@ -33,6 +33,8 @@ namespace Vehicle_Web_App.Controllers.Api
 
         }
 
+      
+
         [HttpPost]
         public IHttpActionResult CreateVehicle(VehicleDto vehicleDto)
         {
@@ -67,6 +69,7 @@ namespace Vehicle_Web_App.Controllers.Api
                        _context.SaveChanges();
             return Ok();
 
+            
         }
         [HttpDelete]
         public IHttpActionResult DeleteVehicle(int id)
@@ -80,5 +83,6 @@ namespace Vehicle_Web_App.Controllers.Api
 
 
         }
+      
     }
 }

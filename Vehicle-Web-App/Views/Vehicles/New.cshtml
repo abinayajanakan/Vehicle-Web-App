@@ -38,11 +38,7 @@
                 
             var vehicleModel = $('#model').val();
             var vehicleMake = $('#make').val();
-            var vehicleYear = $('#year').val();
-             
-        
-        
-       
+            var vehicleYear = $('#year').val(); 
             $.validator.addMethod("validModel", function () {
                 return (vehicleModel !== null) && (vehicleModel.trim() !== '') ;
             }, "Please select a valid model.");
@@ -51,20 +47,14 @@
              }, "Please select a valid make.");
             $.validator.addMethod("validYear", function () {
                 return (vehicleYear - 1950) * (vehicleYear - 2050) <= 0
-            }, "The year must be within 1950 and 2050.");
-               
-                
+            }, "The year must be within 1950 and 2050.");  
             });
         
 
        var validator =  $('#newVehicle').validate({
             submitHandler: function () {
-               var vm = $("#newVehicle").serializeArray();
-
-                             
-               
-
-              
+               var vm = $("#newVehicle").serializeArray();                       
+                           
                 $.ajax({
                     url: "/api/vehicles",
                     method: "post",
@@ -72,7 +62,7 @@
                     dataType: 'json'
                 })
                     .done(function () {
-                             
+                   toastr.success("Vehicles successfully recorded.");           
             $( '#newVehicle' ).each(function(){
                   this.reset();
                      });
@@ -80,16 +70,13 @@
                         
                     })
                     .fail(function () {
-                        alert("Something unexpected happened");
+                        toastr.success("Something unexpected happened.");  
                     });
                return false;
             }
     
        
-            });
-       
-     
-        
+            });     
     </script>
 }
 

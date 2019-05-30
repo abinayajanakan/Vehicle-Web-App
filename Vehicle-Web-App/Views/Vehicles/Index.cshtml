@@ -4,45 +4,83 @@
 
 
 @{
-
-
     ViewBag.Title = "Vehicles";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+    <form asp-action="Index" method="get">
+        <div class="form-actions no-color">
+            <p>
+                Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+                <input type="submit" value="Search" class="btn btn-default" /> | 
+                @Html.ActionLink("Back to Entire List", "Index", "Vehicles")
+             </p>
+        </div>
+    </form>
 
 <h2>Vehicles</h2>
 
-<div class="form-horizontal">
+@if (!Model.Any())
+{
+    <p>We don't have any vehicles yet.</p>
+}
+else
+{
 
-    <hr />
-    <div class="form-group">
 
-
-        <table class="table table-responsive" style="width:400px">
+    <table id="customers" class="table table-bordered table-hover">
+        <thead>
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Id)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Make)
-                </th>
-
+                <th>Id</th>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th>Delete</th>
+                <th>Edit</th>
             </tr>
-
-            @foreach (var item in Model)
+        </thead>
+        <tbody>
+            @foreach (var vehicle in Model)
             {
                 <tr>
+
+                    <td>@vehicle.Id</td>
+                    <td>@vehicle.Make</td>
+                    <td>@vehicle.Model</td>
+                    <td>@vehicle.Year</td>
+
                     <td>
-                        @Html.DisplayFor(modelItem => item.Id)
+                        <button data-vehicle-id="@vehicle.Id" class="btn-link js-delete">Delete</button>
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Make)
+
+
+
+                        @Html.ActionLink("Edit", "Edit", new { id = @vehicle.Id })
                     </td>
 
                 </tr>
             }
+        </tbody>
+    </table>
+}
 
-        </table>
-    </div>
-</div>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#customers .js-delete").on("click", function () {
+                var button = $(this);
+                if (confirm("Are you sure you want to delete this customer?")) {
+                    $.ajax({
+                        url: "/api/vehicles/" + button.attr("data-vehicle-id"),
+                        method: "DELETE",
+                        success: function () {
+                            button.parents("tr").remove();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
 
