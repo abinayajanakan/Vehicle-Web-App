@@ -10,6 +10,6 @@
     "\\Vehicle-Web-App\\Views\\Home",
     "\\Vehicle-Web-App\\Views\\Vehicles"
   ],
-  "SelectedNode": "\\Vehicle-Web-App\\Views\\Vehicles\\Edit.cshtml",
+  "SelectedNode": "\\Vehicle-Web-App\\Models\\Vehicle.cs",
   "PreviewInSolutionExplorer": false
 }
