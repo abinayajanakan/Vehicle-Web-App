@@ -1,7 +1,6 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Vehicle-Web-App",
     "\\Vehicle-Web-App\\Controllers",
     "\\Vehicle-Web-App\\Controllers\\Api",
     "\\Vehicle-Web-App\\Models",
@@ -10,6 +9,6 @@
     "\\Vehicle-Web-App\\Views\\Home",
     "\\Vehicle-Web-App\\Views\\Vehicles"
   ],
-  "SelectedNode": "\\Vehicle-Web-App\\Models\\Vehicle.cs",
+  "SelectedNode": "\\Vehicle-Web-App.sln",
   "PreviewInSolutionExplorer": false
 }

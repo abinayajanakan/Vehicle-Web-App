@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vehicle_Web_App.Models;
-
 using System.Web.Mvc.Html;
 using Newtonsoft.Json;
 using System.Net.Http;
@@ -38,10 +37,7 @@ namespace Vehicle_Web_App.Controllers
 
             return View();
         }
-
-
-       
-
+      
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Save(Vehicle vehicle, VehicleDto vehicleDto)
@@ -51,14 +47,12 @@ namespace Vehicle_Web_App.Controllers
                 _context.Vehicles.Add(vehicle);
             else
             {
-
-
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri("http://localhost:51570/api/");
                     var vehicleInDb = _context.Vehicles.Single(c => c.Id == vehicle.Id);
 
-                    //HTTP POST
+                    //put request  to the api vehicle/id
                     var putTask = client.PutAsJsonAsync<Vehicle>("vehicles/" + vehicle.Id + "/", vehicle);
                     putTask.Wait();
 
@@ -72,8 +66,6 @@ namespace Vehicle_Web_App.Controllers
                 }
             }
             return RedirectToAction("Index");
-
-
         }
 
 
@@ -83,13 +75,13 @@ namespace Vehicle_Web_App.Controllers
 
             if (vehicle == null)
                 return HttpNotFound();
-
+            // initializing the vehicle class using view model 
             var viewModel = new VehicleViewModel
             {
                 Vehicle = vehicle
 
             };
-
+            // returning the instance of vehicle view model to the view edit
             return View(viewModel);
         }
 
@@ -119,7 +111,7 @@ namespace Vehicle_Web_App.Controllers
                     //Define request data format  
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                    //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
+                    //Sending request to find web api REST service resource GetAllVehicles using HttpClient  
                     HttpResponseMessage Res = await client.GetAsync("api/vehicles");
 
                     //Checking the response is successful or not which is sent using HttpClient  
@@ -128,11 +120,11 @@ namespace Vehicle_Web_App.Controllers
                         //Storing the response details recieved from web api   
                         var vehicleResponse = Res.Content.ReadAsStringAsync().Result;
 
-                        //Deserializing the response recieved from web api and storing into the Employee list  
+                        //Deserializing the response recieved from web api and storing into the vehicle list  
                         vehicleInfo = JsonConvert.DeserializeObject<List<Vehicle>>(vehicleResponse);
 
                     }
-                    //returning the employee list to view  
+                    //returning the vehicle list to view  
                     return View(vehicleInfo);
                 }
             }

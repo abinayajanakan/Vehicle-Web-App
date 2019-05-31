@@ -40,21 +40,12 @@ namespace Vehicle_Web_App.Controllers.Api
         {
             if (!ModelState.IsValid)
                 return BadRequest();
-
-
             var vehicle = Mapper.Map<VehicleDto, Vehicle>(vehicleDto);
-
-
             _context.Vehicles.Add(vehicle);
             _context.SaveChanges();
-
             vehicleDto.Id = vehicle.Id;
-            
-            
-
             return Created(new Uri(Request.RequestUri + "/" + vehicle.Id),vehicleDto);
-
-            
+          
         }
         [HttpPut]
         public IHttpActionResult UpdateVehicle(int id, VehicleDto vehicleDto)
@@ -74,7 +65,7 @@ namespace Vehicle_Web_App.Controllers.Api
         [HttpDelete]
         public IHttpActionResult DeleteVehicle(int id)
         {
-                       var vehicleInDb = _context.Vehicles.SingleOrDefault(c => c.Id == id);
+            var vehicleInDb = _context.Vehicles.SingleOrDefault(c => c.Id == id);
             if (vehicleInDb == null)
                 return NotFound();
             _context.Vehicles.Remove(vehicleInDb);

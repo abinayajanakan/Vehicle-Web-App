@@ -1,8 +1,6 @@
 ﻿@model IEnumerable<Vehicle_Web_App.Models.Vehicle>
 @using System.Web.Mvc.Html;
 
-
-
 @{
     ViewBag.Title = "Vehicles";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -27,7 +25,7 @@ else
 {
 
 
-    <table id="customers" class="table table-bordered table-hover">
+    <table id="vehicles" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Id</th>
@@ -68,7 +66,7 @@ else
 {
     <script>
         $(document).ready(function () {
-            $("#customers .js-delete").on("click", function () {
+            $("#vehicles .js-delete").on("click", function () {
                 var button = $(this);
                 if (confirm("Are you sure you want to delete this vehicle?")) {
                     $.ajax({
